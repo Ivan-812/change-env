@@ -25,6 +25,7 @@ def change_value(key, target, path='.env'):
     with open(path, 'w') as file:
         file.writelines(data)
 
+    file.close()
     print("Changed value of " + key + " to " + target)
 
 def change_key(old, target, path='.env'):
@@ -44,8 +45,8 @@ def change_key(old, target, path='.env'):
     with open(path, 'w') as file:
         file.writelines(data)
 
+    file.close()
     print("Changed key " + old + " into " + target)
-
 
 
 def main(argv):
@@ -69,6 +70,7 @@ def main(argv):
         elif opt in ("-v", "--value"):
             argumnets = arg.split(',')
             change_value(argumnets[0], argumnets[1])
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
