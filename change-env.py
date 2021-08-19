@@ -38,7 +38,7 @@ def change_key(old, target):
         if find_key(data[i], old):
             line = i
     if line != -1:
-        data[line] = data[line].replace(old, target)
+        data[line] = data[line].replace(old, target, 1)
 
     #write to file
     with open('.env', 'w') as file:
@@ -54,7 +54,7 @@ def main(argv):
 
     # get the arguments
     try:
-        opts, args = getopt.getopt(argv,"f:k::v::",["filepath=","key=","value="])
+        opts, args = getopt.getopt(argv,"f:k:v:",["filepath=","key=","value="])
     except getopt.GetoptError:
         print ('change-env.py -f <new_path> -k <old_key> <new_key> -v <target_key> <new_value>')
         sys.exit(2)
