@@ -60,8 +60,8 @@ def main(argv):
         sys.exit(2)
 
     # put the arguments into the variable
-    print(opts)
-    print(args)
+    #print(opts)
+    #print(args)
 
     for opt, arg in opts:         
         if opt == '-f':
