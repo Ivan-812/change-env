@@ -66,10 +66,10 @@ def main(argv):
             filepath = arg
         elif opt in ("-k", "--key"):
             argumnets = arg.split(',')
-            change_key(argumnets[0], argumnets[1])
+            change_key(argumnets[0], argumnets[1], filepath)
         elif opt in ("-v", "--value"):
             argumnets = arg.split(',')
-            change_value(argumnets[0], argumnets[1])
+            change_value(argumnets[0], argumnets[1], filepath)
 
 
 if __name__ == "__main__":
