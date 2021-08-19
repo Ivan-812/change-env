@@ -8,9 +8,9 @@ def find_key(line,target):
     else:
         return False
 
-def change_value(key, target):
+def change_value(key, target, path='.env'):
 
-    with open('.env', 'r') as file:
+    with open(path, 'r') as file:
         data = file.readlines()
     
     #find that line
@@ -22,14 +22,14 @@ def change_value(key, target):
         data[line] = key + '=' + target + '\n'
     
     #write to file
-    with open('.env', 'w') as file:
+    with open(path, 'w') as file:
         file.writelines(data)
 
     print("Changed value of " + key + " to " + target)
 
-def change_key(old, target):
+def change_key(old, target, path='.env'):
 
-    with open('.env', 'r') as file :
+    with open(path, 'r') as file :
         data = file.readlines()
 
     #find that line
@@ -41,7 +41,7 @@ def change_key(old, target):
         data[line] = data[line].replace(old, target, 1)
 
     #write to file
-    with open('.env', 'w') as file:
+    with open(path, 'w') as file:
         file.writelines(data)
 
     print("Changed key " + old + " into " + target)
@@ -50,29 +50,25 @@ def change_key(old, target):
 
 def main(argv):
 
-    print ('Argument List:', str(sys.argv))
+    filepath = ".env"
 
     # get the arguments
     try:
         opts, args = getopt.getopt(argv,"f:k:v:",["filepath=","key=","value="])
     except getopt.GetoptError:
-        print ('change-env.py -f <new_path> -k <old_key> <new_key> -v <target_key> <new_value>')
+        print ('change-env.py -f <new_path> -k <old_key>,<new_key> -v <target_key>,<new_value>')
         sys.exit(2)
 
     # put the arguments into the variable
-    #print(opts)
-    #print(args)
-
     for opt, arg in opts:         
         if opt == '-f':
-            print()
-            # change path
-
-        if opt in ("-k", "--key"):
-            change_key(arg, args[0])
-
-        if opt in ("-v", "--value"):
-            change_value(arg, args[0])
+            filepath = arg
+        elif opt in ("-k", "--key"):
+            argumnets = arg.split(',')
+            change_key(argumnets[0], argumnets[1])
+        elif opt in ("-v", "--value"):
+            argumnets = arg.split(',')
+            change_value(argumnets[0], argumnets[1])
 
 if __name__ == "__main__":
     main(sys.argv[1:])
