@@ -2,6 +2,14 @@
 
 This is use for changing the `.env` file, please put this into the same directory as the `.env` file.
 
+## Indicate `.env` path
+
+If the path is missing, it is default to set in the same directory.
+
+```bash
+$ python3 change-env.py -f <your_path> ...
+```
+
 ## Change key name
 
 ```bash
@@ -20,10 +28,20 @@ example:
 $ python3 change-env.py -v account_password,iamhandsome
 ```
 
-## Indicate `.env` path
-
-If the path is missing, it is default to set in the same directory.
+## Append new line
 
 ```bash
-$ python3 change-env.py -f <your_path> ...
+$ python3 change-env.py -a <new_line>
+
+example:
+$ python3 change-env.py -a my_password=123456
+```
+
+## Delete a key
+
+```bash
+$ python3 change-env.py -d <key_name>
+
+example:
+$ python3 change-env.py -d my_password
 ```
